@@ -1,0 +1,47 @@
+*기본선언
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+
+*변수선언
+<c:set var="id" value="admin"/>
+
+
+
+*출력
+<c:out value="${id }"/>
+
+
+
+*조건문
+-- if문연습1 숫자는 그냥비교
+<c:if test="${pw==1234 }">
+	비밀번호일치 :<c:out value="${pw }"/><br>
+</c:if>
+
+--if문연습2 문자는 ''를 쓰고비교
+<c:if test="${'admin'==id }">
+	아이디일치 :<c:out value="${id }"/><br>
+</c:if>
+
+==>실습
+<!--  89점의 학점은 b를 비교문 만들어서 -->
+<c:set var="a" value="89"/>
+
+<c:if test="${a>=90 }">
+학점은a입니다.
+</c:if>
+
+<c:if test="${a<90&&a>=80 }">
+학점은b입니다.
+</c:if>
+
+
+
+*에러
+<!-- 에러 -->
+<c:catch var="error">
+	<%=2/0 %>
+</c:catch>
+<!-- 에러출력 -->
+<c:out value="${error }"/>

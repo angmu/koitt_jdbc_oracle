@@ -1,0 +1,21 @@
+jsp tag library라는 뜻
+
+*core를 주로 사용함.
+
+>for, if,switch, 
+
+
+
+*sql>보통은 dao class를 만들어서 사용
+데이터 입력,수정,삭제
+--------------------------------------
+
+
+*forEach로 for문 대체
+
+		     //객체일 경우 필수 |이후 x
+<c:forEach var="dto" items="${list}" >
+
+</c:forEach> 
+
+여기까지만 해도 찍힌다리 :D 

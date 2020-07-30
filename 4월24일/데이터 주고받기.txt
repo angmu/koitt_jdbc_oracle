@@ -1,0 +1,37 @@
+데이터 주고받기
+
+	<보내기>				<받기>
+1.form					┐
+2.파라미터 주소뒤에 ?id=admin		ㅏ-- ${param.id}	
+3.param					┘
+4.기본객체   				-----<c:forEach var="dto" items="${test }">
+page,request,session,application	     혹은 ${기본객체Scope.user_id}
+5.메소드
+
+그외)
+쿠키,session
+
+--------------------------------
+//로그인체크하는 부분을 기본객체Scope를 활용
+<%
+
+if(session.getAttribute("authUser")==null){
+%>
+<script type="text/javascript">
+  alert('권한이 없습니다. 로그인해주세요');
+  window.location.href='login.jsp';
+</script>
+<%
+}
+%>
+
+변경))
+<c:if test="${sessionScope.authUser==null}">
+  <script type="text/javascript">
+  	alert('권한이 없습니다. 로그인해주세요');
+	window.location.href='login.jsp';
+  </script>
+</c:if>
+
+---------------------------------
+
