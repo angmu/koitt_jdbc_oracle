@@ -1,0 +1,24 @@
+폼에서 문자를 입력받아 그것으로 검색할수있게 만듦.
+
+>form.html, ex0413.jsp
+
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+		conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","ora_user","1234");
+		stmt=conn.createStatement();
+		
+		///이걸 만약 받는다면 이걸로 검색 :D
+		String in1="홍";
+		String sql="select*from member where name like '%"+in1+"%'";
+		rs=stmt.executeQuery(sql);
+
+		
+//아이디 역순 검색 >>>게시판 글의 경우 desc 형태로 하는거이 좋음 ㅇㅇ
+		String sql="select*from member where id like '%"+in2+"%' order by id desc";		
+		
+
+월급 5000~10000 사이 사원조회 :>		
+>ex0413_02.jsp		
+
+정렬(sort)
+>>>
+ex0413_T2,formT2

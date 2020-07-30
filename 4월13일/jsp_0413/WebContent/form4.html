@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function check(){
+	
+	
+	if(form.search.value=="name_search"){
+		var name_ch=/^[a-zA-Z가-힣]*$/;
+		
+		if(form.input1.value==""){
+			alert('입력안된 값이 있습니다.');
+			form.input1.focus();
+			return false;
+		}
+		if(form.input2.value!=""){
+			alert('이름검색키워드는 1개만 입력가능합니다');
+			form.input2.value="";
+			return false;
+		}
+		
+		if(!(name_ch.test(form.input1.value))){
+			alert('영문, 한글만 입력가능합니다');
+			form.input1.focus();
+			return false;
+		}
+
+		return form.submit();
+	}
+		
+		
+	else{
+		var num_ch=/^[0-9]*$/;
+		if(form.input1.value==""||form.input2.value==""){
+			alert('입력안된 값이 있습니다.');
+			return false;
+		}
+		
+		if(!(num_ch.test(form.input1.value)&&num_ch.test(form.input2.value))){
+			alert('숫자만 입력가능합니다.');
+			return false;
+		}
+		//값비교
+		var a=parseInt(form.input1.value);
+		var b=parseInt(form.input2.value);
+		
+		if(a>b){
+			alert('2번째 숫자는 첫번째 숫자보다 작을수 없습니다.');
+			form.input2.focus();
+			return false;
+			
+		}
+		
+	}	
+
+	if(form.look.value==""){
+		alert('정렬방식을 선택해주세오');
+		return false;
+	}
+	
+	return form.submit();
+}
+
+</script>
+
+
+</head>
+
+<body>
+<form action="ex0413_04.jsp" name="form" method="post">
+	<h2>검색방법을 선택하세오</h2>
+<!-- 	검색어 입력 <input type="text" name="name"><br> -->
+	검색조건<select name="search">
+		<option value="name_search" selected="selected">이름검색</option>
+		<option value="salary_search">월급검색</option>
+	</select><br>
+	정렬방법<select name="look">
+		<option value="emp_id_low" selected="selected">사원번호오름차순</option>
+		<option value="emp_id_high">사원번호내림차순</option>
+		<option value="salary_high">월급높은순</option>
+		<option value="salary_low">월급낮은순</option>
+	</select><br>
+	<input type="text" name="input1">~<input type="text" name="input2"><input type="button" value="검색" onclick="check()">
+	<input type="reset" value="취소">
+</form>
+</body>
+</html>

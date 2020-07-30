@@ -1,0 +1,366 @@
+*사용자만들기
+//student1이라는 유저를 만드는데 비번은 1234로 한다
+create user student1 identified by 1234;
+//student1에게 connect, resource 권한을 준다.
+grant connect, resource to student1;
+
+===>실습
+1)ora1생성
+2)koitt생성
+
+
+-------------------------------------------------------
+*선택, 조건절
+
+//select는 검색할 때 쓰는 것이다.
+SELECT employee_id, salary,commission_pct from employees;
+SELECT employee_id, salary,hire_date from employees;
+
+
+//from 뒤에는 테이블이름이 나온댜 table 의 가로항목 >컬럼. 세로줄은 >롤 
+//where 뒤에는 조건절 아래예제에서는 employee_id가 124보다 큰것을 보여달라는 뜻이다
+SELECT * FROM employees where employee_id>124;
+
+//컬럼내용 확인 (아래처럼 입력 혹은 테이블 자체를 더블클릭)
+desc employees;
+
+--------------------------------------------------------
+
+*테이블 생성
+create table member(
+//primary key라는 건 유일키라는 뜻이다. (중복불가)
+id varchar2(20 byte) primary key,
+pw varchar2(20),
+name varchar2(20),  //우리나라에서 가장 긴 이름 >>박차고나온놈이샘이나 >>10자라서 20바이트
+phone varchar2(20)); //하지만 보통은 01099999999 라서 11을 함.
+
+commit;
+
+//테이블 삭제 >>> 롤백이 되지 않는다.(drop) <<만약 시키면 권한밖이라고 말하면서 회피해야한다!!!
+DROP TABLE member;
+
+commit;
+
+===>>실습 
+
+1)member2테이블을 생성 후 id pw name hobby1,hobby2,hobby3,hobby4,hobby5,hobby6,gender,address 넣기
+2)member3테이블을 생성 후 id pw name tell1,tell2,tell3,hobby1,hobby2,hobby3,gender,address 넣기
+
+--------------------------------------------------------
+*데이터 값 넣기 (commit필요)
+
+insert into member(id,pw,name,phone) values
+('abc','123','홍길동','010-1234-5678');
+
+insert into member(id,pw,name,phone) values
+('def','456','김유신','010-2345-6789');
+
+insert into member(id,pw,name,phone) values
+('ghi','789','유관순','010-3456-7890');
+
+//중간확인
+select * from member;
+
+//저장
+commit;
+
+//잘못된데이터
+insert into member(id,pw,name,phone) values
+('kim','012','강감찬','0104567-8901');
+
+//확인
+SELECT * FROM member;
+ 
+//되돌리면 강감찬 데이터는 없어짐
+rollback;
+ 
+//제대로 된 값으로 다시 입력
+ insert into member(id,pw,name,phone) values
+('kim','012','강감찬','010-4567-8901');
+
+//확인
+  SELECT * FROM member;
+  
+//저장
+  commit;
+  
+  select * from member;
+
+====>실습 member2를 만들고 데이터 3개 넣기
+
+(number로 된 항목은 체크박스라서 1과 0으로 표현)
+
+		~~~~~~~~~~~테이블만들기~~~~~~~~~~~~~~~
+create table member2(
+id VARCHAR2(20) PRIMARY KEY,
+pw VARCHAR2(20),
+name VARCHAR2(20),
+hobby1 NUMBER(1,0),
+hobby2 NUMBER(1,0),
+hobby3 NUMBER(1,0),
+hobby4 NUMBER(1,0),
+gender VARCHAR2(20),
+address VARCHAR2(20));
+
+commit;
+
+               ~~~~~~~~~~~데이터넣기~~~~~~~~~~~~~~~
+
+insert into member2(id,pw,name,hobby1,hobby2,hobby3,hobby4,gender,address) VALUES
+('test1','1234','테스트','1','0','0','1','woman','seoul');
+
+insert into member2(id,pw,name,hobby1,hobby2,hobby3,hobby4,gender,address) values
+('test2','1234','테스트엽','0','0','1','0','man','inchean');
+
+insert into member2(id,pw,name,hobby1,hobby2,hobby3,hobby4,gender,address) values
+('test3','1458','라스트','0','0','1','1','man','jeju');
+
+select * from member2;
+
+commit;
+
+==>select * from member2; 하고 f9를 눌러보면 결과창이 아래처럼 나온다 :>
+id	pw	name		hobby1	hobby2	hobby3	hobby4	gender	address
+--------------------------------------------------------------------------------
+test1	1234	테스트		1	0	0	1	woman	seoul
+test2	1234	테스트엽	0	0	1	0	man	inchean
+test3	1458	라스트		0	0	1	1	man	jeju
+
+
+
+
+----------------------------------------------------------
+
+*중복>>
+
+create table member(
+//primary key라는 건 유일키라는 뜻이다. (중복불가)
+id varchar2(20 byte) primary key,
+pw varchar2(20),
+name varchar2(20), 
+phone varchar2(20));
+insert into member(id,pw,name,phone) values
+('abc','123','홍길동','010-1234-5678');
+
+insert into member(id,pw,name,phone) values
+('def','456','김유신','010-2345-6789');
+
+insert into member(id,pw,name,phone) values
+('ghi','789','유관순','010-3456-7890');
+
+
+insert into member(id,pw,name,phone) values <<<아이디가 같아서 값넣기 불가
+('abc','153','홍길순','010-1222-5678');
+
+insert into member(id,pw,name,phone) values <<다 같아도 아이디가 달라서 값넣기 가능
+('bcd','123','홍길동','010-1234-5678');
+
+
+-----------------------------------------------------------
+*데이터변경
+-where를 찾은 후 내용을 수정
+update member set pw='234',name='이순신',phone='010-1515-4444'
+where id='bcd';
+
+-원하는 값만 조회
+select * from member where id='bcd';
+
+//김구삽입
+insert into member(id,pw,name,phone) values
+('dfw','567','김구','010-4448-3153');
+
+//김구를 홍길동으로 변경
+update member set name='홍길동' where id='dfw';
+
+update member set pw='111' where name='홍길동';
+//찾는조건이 여러개일때는 아래처럼.
+update member set pw='5555' where name='홍길동' and phone='010-4448-3153';
+
+
+commit;
+
+==>
+실습용 테이블 만들기>>
+
+create table member2(
+id VARCHAR2(20) PRIMARY KEY,
+pw VARCHAR2(20),
+name VARCHAR2(20),
+hobby1 VARCHAR2(20),
+hobby2 VARCHAR2(20),
+hobby3 VARCHAR2(20),
+hobby4 VARCHAR2(20),
+gender VARCHAR2(20),
+address VARCHAR2(20));
+
+commit;
+
+
+ ~~~~~~
+insert into member2(id,pw,name,hobby1,hobby2,hobby3,hobby4,gender,address) values
+('naver','1111','네이버','수영','독서','조깅','요리','남','경기도 분당');
+
+insert into member2(id,pw,name,hobby1,hobby2,hobby3,hobby4,gender,address) values
+('daum','2222','다음','수영','0','조깅','0','여','제주도 제주시');
+
+insert into member2(id,pw,name,hobby1,hobby2,hobby3,hobby4,gender,address) values
+('google','3333','구글','수영','0','0','0','남','미국');
+
+commit;
+
+select * from member2;
+
+
+
++++
+insert into member2 values
+('nate','4444','네이트','수영','독서','0','0','여','서울시');
+
+이런형식으로도 넣을수 있다한다.
+----
+
+*DB에는 왠만하면 null값이 안들어가게 하는게 좋다. (연산오류가 날수도있음 //0이라거나 대체를 함)
+insert into member2 values
+('youtube','','유튜브','','','','','여','미국');
+이런식으로 공백을 하면
+youtube	  null	유튜브  null	null	null	null	여	미국
+
+이케 드간다.
+
+
+delete from member2 where id='youtube'; <<일부항목지우기 drop과 달리 rollback; 으로 살리기 가능
+
+
+===>실습: 한글로 된부분을 영어로, 0을 해당없음으로 
+(기존표)
+id	pw	name    hobby1	hobby2	hobby3	hobby4	gender	address
+------------------------------------------------------------------------------
+naver	1111	네이버	swim	read	run	cook	남	경기도 분당
+daum	2222	다음	swim	0	run	0	여	제주도 제주시
+nate	4444	네이트	swim	read	0	0	여	서울시
+youtube	5555	유튜브	swim	0	0	0	여	미국
+
+
+
+
+update member2 set hobby1='swim' where hobby1='수영';
+update member2 set hobby2='read' where hobby2='독서';
+update member2 set hobby3='run' where hobby3='조깅';
+update member2 set hobby4='cook' where hobby4='요리';
+
+
+update member2 set hobby2='해당없음' where hobby2='0';
+update member2 set hobby3='해당없음' where hobby3='0';
+update member2 set hobby4='해당없음' where hobby4='0';
+
+
+(결과표)
+
+id	pw	name    hobby1	hobby2		hobby3		hobby4		gender	address
+-------------------------------------------------------------------------------------------------
+naver	1111	네이버	swim	read		run		cook		남	경기도 분당
+daum	2222	다음	swim	해당없음	run		해당없음	여	제주도 제주시
+nate	4444	네이트	swim	read		해당없음	해당없음	여	서울시
+youtube	5555	유튜브	swim	해당없음	해당없음	해당없음	여	미국
+
+
+------------------------------------------------------------------------
+*컬럼이 뭐가 있는지 확인
+desc member2;
+
+(not null이라 적힌 id는 primary key이기 때문에 null이 될수없다는 뜻이댜)
+------------------------------------------------------------------------
+
+*부분검색
+1. 검색할 컬럼 확인을 위해 해당테이블 검색
+select *from departments;
+2. 컬럼,컬럼from 테이블명으로 검색
+select department_id,manager_id from departments;
+
+==>실습1: 사원번호 이름 급여 입사년도 확인 /employees 테이블
+select *from employees;
+select employee_id,emp_name,salary,hire_date from employees;
+
+==>응용1: 급여(1달)를 환율로 얼마인지 확인 (컬럼에 사칙연산가능)
+select employee_id,emp_name,salary,salary*1300 from employees; 
+
+(일부발췌)
+employee_id      emp_name	 	salary		salary*1300
+--------------------------------------------------------------------
+199		 Douglas Grant		2600		3380000
+201		 Michael Hartstein	13000		16900000
+
+--------------------------------------------------------------------------------
+
+**null은 0이 아니기 때문에 사칙연산이 불가하다.
+(오라클에서 null은 무한대 혹은 ?로 인식된다.)
+
+*null부분을 대체하는 함수: 
+nvl(컬럼명,대체값) - 컬럼에 null이 있으면 대체할 값을 입력.
+ex) nvl(commission_pct,0)
+
+
+>커미션(인센티브) 포함금액확인 
+select emp_name,salary*1300,salary*1300+salary*commission_pct*1300 from employees;
+
+
+(가공전)
+emp_name	 salary*1300		salary*1300+salary*commission_pct*1300
+--------------------------------------------------------------------
+Peter Vargas	 3250000		null
+John Russell	 18200000		25480000
+Karen Partners	 17550000		22815000
+
+>>이처럼 null이 있으면 저케 나온다.
+
+
+select emp_name,salary*1300,(salary*1300)+(salary*nvl(commission_pct,0)*1300) from employees;
+
+(가공후)
+
+emp_name	 salary*1300		salary*1300+salary*commission_pct*1300
+--------------------------------------------------------------------
+Peter Vargas	 3250000		3250000
+John Russell	 18200000		25480000
+Karen Partners	 17550000		22815000
+
+-------------------------------------------------------------------------------
+
+**수업용 실습테이블
+>
+create table job_mem2(
+id VARCHAR2(20) PRIMARY KEY,
+name VARCHAR2(20),
+salary number(5),
+comm number(3), <<자격증여부 1,0 있으면 50만원 더 주기로 함:>
+phone VARCHAR2(20),
+address VARCHAR2(50));
+
+insert into job_mem2 values(
+'a001','홍길동',400,1,'010-1111-1111','서울');
+
+
+insert into job_mem2 values(
+'a002','유관순',450,'','010-2222-2222','경기');
+
+
+insert into job_mem2 values(
+'a003','김유신',350,'','010-3333-3333','인천');
+
+
+insert into job_mem2 values(
+'a004','강감찬',550,1,'010-4444-4444','부산');
+
+
+insert into job_mem2 values(
+'a005','김구',250,'','010-5555-5555','대전');
+
+commit;
+
+
+select name,salary*10000,(salary*10000)+(nvl(comm,0)*500000) from job_mem2;
+
+select * from job_mem2;
+
+--------------------------------------------------------------------------------
+

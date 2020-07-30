@@ -1,0 +1,32 @@
+sql 컬럼타입
+
+number(4,2) <<총 4자리인데 소수점밑에 2자리가 있다는 뜻 ex) 22.22   // , 없으면 정수형만 받겠다는 소리
+
+date 
+기본형식은 YY/MM/DD형식
+
+char >>고정형
+
+varchar>> 가변형
+
+--------------------
+
+JDBC
+>> mysql, ms-sql, oracle 이 상호간 db 호환이 가능하도록 만든것 ㅇㅇ
+
+연결순서
+>
+
+1.jdbc드라이버 로드 		DriverManager	Class.forName("oracle.jdbc.driver.OracleDriver"); //메모리에 oracldriver로드
+	▼			     ▼
+2.database 연결(id,비번) 	Connection	DriverManager.getConnection(JDBC URL,id,pw);   //connect 객체생성
+	▼			     ▼
+3.sql문 실행			Statement     	connection.createStatement(); statement객체를 통해 sql문 실행      	
+	▼			     ▼
+데이터베이스 연결해제	        4.ResultSet	statement.executeQuery()  >>여러개의 결과값 ex)	select*from member2 같은거.. 
+						insert,update,delete 같은거..	>> statement.executeUpdate() 
+
+
+>>해제순서는 연결순서를 역순으루..
+
+

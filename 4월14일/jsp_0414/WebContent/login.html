@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <style>
+     body{
+        background: #efefef;
+        margin: 0px;
+        padding: 0px;
+    }
+    .container{
+        width: 700px;
+        margin: 0 auto;
+        font-size: 12.5px;
+    }
+    .login_box{
+        width: 500px;
+        margin: 100px auto;
+    }
+    input{
+        box-sizing: border-box;
+        margin-bottom: 7px;
+        padding: 5px 10px;
+        width: 460px;
+        height: 51px;
+        border: 1px solid #e5e5e5;
+    }
+    .input_set{
+        margin-bottom: 15px;
+    }
+    .button1{
+        height: 61px;
+        background: #1EC800;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+    }
+  </style>
+
+
+
+
+</head>
+<body>
+  <div class="container">
+    <div class="login_box">
+      <form action="Login_ok" name="login" method="post">
+        <div>
+          <div class="input_set">
+            <input type="text" name="id" placeholder="아이디" autofocus>
+            <input type="password" name="pw" placeholder="비밀번호">
+          </div>
+          <div>
+            <input type="submit" value="로그인" class="button1">
+          </div>    
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

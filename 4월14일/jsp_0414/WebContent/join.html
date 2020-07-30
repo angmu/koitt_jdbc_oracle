@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+function check(){
+	var id_ch=/^[a-zA-Z0-9]{3,10}$/;
+	var pw_ch=/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+|;:,.?]).{3,10}$/;
+	var name_ch=/^[a-zA-Z가-힣]{1,10}$/;
+	
+	if(join.id.value==""){
+		alert('아이디를 입력하세오');
+		join.id.focus();
+		return false;
+	}
+	if(!(id_ch.test(join.id.value))){
+		alert('아이디는 영문 숫자로만 3~10글자 가능');
+		join.id.value="";
+		join.id.focus();
+		return false;
+	}
+	if(join.pw.value==""){
+		alert('비밀번호를 입력하세오');
+		join.pw.focus();
+		return false;
+	}
+	if(!(pw_ch.test(join.pw.value))){
+		alert('비밀번호는 영문 숫자,특수문자로만 3~10글자 가능');
+		join.pw.value="";
+		join.pw.focus();
+		return false;
+	}
+	if(join.pw2.value==""){
+		alert('비밀번호확인을 입력하세오');
+		join.pw2.focus();
+		return false;
+	}
+	if(join.pw.value!=join.pw2.value){
+		alert('비밀번호확인이 잘못입력되었습니다.');
+		join.pw2.focus();
+		return false;
+	}
+	if(join.name.value==""){
+		alert('이름을 입력하세오');
+		join.name.focus();
+		return false;
+	}
+	if(!(name_ch.test(join.name.value))){
+		alert('이름은 영문자 혹은 국문으로만 1~10글자 가능');
+		join.name.value="";
+		join.name.focus();
+		return false;
+	}
+	
+	if(join.phone2.value==""){
+		alert('전화번호를 입력하세오');
+		join.phone2.focus();
+		return false;
+	}
+	if(join.phone3.value==""){
+		alert('전화번호를 입력하세오');
+		join.phone3.focus();
+		return false;
+	}
+	
+	
+	return join.submit();
+}
+
+
+</script>
+
+
+
+</head>
+<body>
+	<form action="JoinOk" name="join" method="post">
+	
+		<h2>회원가입</h2>
+		아이디<input type="text" name="id" autofocus="autofocus">*아이디는 영문,숫자만 가능<br>
+		비밀번호<input type="password" name="pw"><br>
+		비밀번호 확인<input type="password" name="pw2"><br>
+		이름<input type="text" name="name"><br>
+		전화번호<select name="phone1">
+		<option value="010" selected="selected">010</option>
+		<option value="016">016</option>
+		<option value="017">017</option>
+		<option value="018">018</option>
+		<option value="019">019</option>
+		<option value="011">011</option>
+		</select>-<input type="text" name="phone2">-<input type="text" name="phone3"><br>
+		성별<input type="radio" name="gender" value="man" id="man" checked="checked"><label for="man">남자</label>		
+		<input type="radio" name="gender" value="woman" id="woman"><label for="woman">여자</label><br>
+		<input type="button" onclick="check()" value="회원가입"><input type="reset" value="취소">		
+	
+	</form>
+
+
+
+
+
+</body>
+</html>
