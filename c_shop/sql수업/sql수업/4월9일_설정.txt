@@ -1,0 +1,41 @@
+오라클 시스템 구축 >>cmd 창에서실행
+
+
+*** ORACLE SQLplus(도스창) 에서 실행 ***
+[ 테이블스페이스 생성하기 ]
+
+//백업용을 대충 만들어서 하겟다는 뜻
+create tablespace myts datafile
+'c:\dboracle\myts.dbf' size 100m autoextend on next 5m;
+
+[ 사용자 생성 ]
+
+
+//ora_user라는 사용자를 만들고 비번은 1234
+create user ora_user identified by 1234
+default tablespace myts
+temporary tablespace temp;
+
+[ 롤 부여하기 ]
+
+// 하위사용자 ora_user에게 권한부여
+grant dba to ora_user;
+
+
+*** CMD 창에서 실행 ***
+
+[ 파일 import 방법 ]
+//복사했을때는 우클릭+붙여넣기로 :ㅇ
+
+1.
+c:\backup 폴더를 만들고
+expall.dmp, expcust.dmp 파일을 복사한다.
+
+2. 
+imp ora_user/1234 file=expall.dmp log=empall.log ignore=y grants=y rows=y indexes=y full=y
+( 입력후 enter를 누른다. )
+
+3. 
+imp ora_user/1234 file=expcust.dmp log=expcust.log ignore=y grants=y rows=y indexes=y full=y
+( 입력후 enter를 누른다. )
+

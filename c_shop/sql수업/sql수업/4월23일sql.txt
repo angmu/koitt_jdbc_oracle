@@ -1,0 +1,178 @@
+<복습>
+
+foreign key 
+>>실무에서는 잘 쓰지않지만
+부모에서 primary key로 설정되어있는것을
+key값으로 사용
+부모에 없는 key를 사용할 수없다.
+ex)성별, 부서번호 등.
+
+check
+>>범위 혹은 어떤 값들 중에서만 값이 들어왓으면할때
+ex)성별, 부서번호 등.
+
+
+default
+>>입력안했을때 자동입력이되도록
+
+---------------------------------------
+
+<신규내용>
+
+*decode
+>>자바의 switch와 같다. (범위는 안되고 일치= 할때만 쓸수있음)
+
+예제문 >
+select emp_name,department_id,decode(department_id, 10, '총무기획부',20, '마케팅',30,'구매/생산부',40,'인사부') as dept_name from employees;
+emp_name		department_id	dept_name 
+---------------------------------------------------
+Jennifer Whalen		10		총무기획부
+Michael Hartstein	20		마케팅
+Pat Fay			20		마케팅
+Susan Mavris		40		인사부
+
+
+select stu_num,stu_name,stu_total,stu_avg,decode(stu_avg,70,'D학점',80,'C학점',90,'B학점',100,'A학점')as "학점" from stu_score;
+stu_num	stu_name stu_total stu_avg 학점
+------------------------------------------
+s0001	홍길동	 300	   100	   A학점
+s0002	김유신	 270	   90	   B학점
+s0003	유관순	 240	   80	   C학점
+s0004	김구	 270	   90	   B학점
+
+(실습==>
+연봉인상해주는 사람을 찾아서 salary를 인상해주세요라고 출력
+>pu_man직급 >5%인상
+st clerk >10%인상
+fi mgr>3%인상
+(인상된 salary 출력
+
+select job_id,emp_name,salary as "현재급여",decode(job_id,'PU_MAN',salary*1.05,'ST_CLERK',salary*1.1,'FI_MGR',salary*1.03) as "예상인상급여",decode(job_id,'PU_MAN','5%인상','ST_CLERK','10%인상','FI_MGR','3%인상') as "급여인상해주세요" from employees where job_id in('PU_MAN','ST_CLERK','FI_MGR') order by job_id asc;
+job_id		emp_name	현재급여  예상인상급여  급여인상해주세요
+------------------------------------------------------------------------
+FI_MGR		Nancy Greenberg	12008	  12368.24	3%인상
+PU_MAN		Den Raphaely	11000	  11550		5%인상
+ST_CLERK	James Landry	2400	  2640		10%인상
+ST_CLERK	Steven Markle	2200	  2420		10%인상
+
+
+*case
+자바의 if와 같다.
+(범위사용가능)
+
+select emp_name,job_id,salary,
+case when job_id='PU_MAN' then salary*0.05
+when job_id='ST_CLERK' then salary*0.1
+when job_id='FI_MGR' then salary*0.03
+end as "인상액" from employees where job_id in ('PU_MAN','ST_CLERK','FI_MGR');
+emp_name 	  job_id	salary	인상액
+------------------------------------------------
+Nancy Greenberg	  FI_MGR	12008	360.24
+Den Raphaely	  PU_MAN	11000	550
+Julia Nayer	  ST_CLERK	3200	320
+Irene Mikkilineni ST_CLERK	2700	270
+
+
+select stu_num,stu_name,stu_total,stu_avg,
+case when stu_avg>=90 then 'A'
+when stu_avg>=80 and stu_avg<90 then 'B'
+when stu_avg>=70 and stu_avg<80 then 'C'
+when stu_avg<70 then 'D'
+end as stu_hak from stu_score;
+stu_num stu_name stu_total stu_avg stu_hak 
+s0001	홍길동	 300	   100	   A
+s0002	김유신	 270	   90	   A
+s0003	유관순 	 240	   80	   B
+s0004	김구	 270	   90 	   A
+s0005	강감찬	 210	   70      C
+s0006	홍길자	 267	   89	   B
+
+--->>이후 응용시 select할때 넣는게 아닌 insert할때 case를 사용하여 미리 넣는다 :D
+
+응용2>> 버튼 클릭시 학점이 들어가게 :D
+update stu_score set stu_hak=(
+case when stu_avg>=90 then 'A'
+when stu_avg>=80 and stu_avg<90 then 'B'
+when stu_avg>=70 and stu_avg<80 then 'C'
+when stu_avg<70 then 'D'
+end); 
+
+혹은 끝에 where stu_num='s0001' 이런식으루 넣을수도잇다리 'ㅂ'
+
+---------------------------------------
+
+그룹함수
+*count >>행의 개수를 세준다  >> null값은 제외하고 계산을 해준다. nvl로 변형해서 안하면 오류다욘
+select count(*) from stu_score; >> 6 (응용 전체 학생수)
+
+*avg >>평균
+select avg(stu_avg) from stu_score; >>86.5 (응용 전체학생평균)
+
+*min >>최저
+select min(stu_avg) from stu_score; >>70(최저점)
+
+*max >>최고
+select max(stu_avg) from stu_score; >>100(최고점)
+
+*sum>>합계
+select sum(salary) from employees; >>매달 직원월급으로 얼마나 나가는지 계산
+
+
+
+**그룹함수와 일반함수를 동시에 쓸수없다.
+>>group by라는 문구랑 같이 써야함. 
+select department_id,avg(salary) from employees; >>오류
+select department_id,avg(salary) from employees  group by department_id; >> department_id가 같은 것끼리 묶어서 salary의 avg를 계산함.
+
+
+---------------------------------------
+*group by >> 똑같은것을 그룹으로 묶어나옴 destinct와 유사함.
+select department_id from employees group by department_id;
+
+count할때 null이 있을경우를 대비하여nvl을 사용해야함.
+select department_id,count(nvl(department_id,1)),avg(salary) from employees  group by department_id;
+안쓰면department_id가 null인 그룹은 count가 0으로 나온다.
+
+***group by 를 쓸때는 where 대신 having으로 써야 찾아짐.
+select department_id,min(salary) as min,max(salary) as max from employees having department_id>60  group by department_id;
+
+department_id   min 	max
+---------------------------------
+100		6900	12008
+70		10000	10000
+90		17000	24000
+110		8300	12008
+80		6100	14000
+
+
+==>실습.
+//부서별 최대값, 최소값
+select department_id,min(salary) as min,max(salary) as max from employees group by department_id;
+
+department_id   min 	max
+---------------------------------
+100		6900	12008
+30		2500	11000
+null		7000	7000
+20		6000	13000
+70		10000	10000
+90		17000	24000
+110		8300	12008
+50		2100	8200
+
+
+//부서별 사원수, 커미션 받는 사원수
+
+select department_id,count(nvl(department_id,1)) as "사원수",count(commission_pct) as "커미션사원" from employees group by department_id;
+
+department_id   min 	max
+------------------------------
+30		6	0
+null		1	1
+20		2	0
+70		1	0
+90		3	0
+
+응용>>전공별 학생수, 등록금 등 조회때 사용
+
+

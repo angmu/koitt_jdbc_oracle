@@ -1,0 +1,145 @@
+#날짜함수
+sysdate		시스템의 현재날짜
+months_between  두날짜사이가 몇개월인지 반환
+add_months 특정날짜에 개월수
+next_day 
+
+
+#validity (1년 지난 회원 메일보내기..에 구현하는것)
+select sysdate-1,sysdate+365 as validity from dual;
+
+select hire_date,round((sysdate-hire_date)/365,0) as "근무년수" from employees;
+select hire_date,round((sysdate-hire_date)/52,0) as "근무주차" from employees;
+select hire_date,round((sysdate-hire_date)/365*12,0) as "근무달수" from employees;
+
+#months_between   
+select hire_date,round(months_between(sysdate,hire_date),0) as "근무달수" from employees;
+
+#add_months 
+select hire_date,sysdate,add_months(sysdate,12) from employees;
+
+#next_day 가장 가까운날짜
+select sysdate,next_day(sysdate,'토요일') from dual;
+
+-------------------------------------
+
+자바에서 넣는 현재시간
+>>Timestamp time=new Timestamp(System.currentTimeMillis();
+
+
+---------------------------------------
+#날짜 > 문자 형변환
+
+****TO_CHAR
+
+select sysdate,to_char(sysdate,'yyyy-MM-dd/dy hh:mi:ss') as "char형변환" from dual;
+(출력)
+sysdate		char형변환
+-------------------------------
+20/04/20	2020-04-20/월 14:12:51
+
+mon >4월
+MM > 04 (달)
+day >금요일
+dy >금
+MI >(분) <<주의
+
+select to_char(birth,'yyyy-MM-dd/day') as char_birth from lms_member;
+(출력)
+char_birth 
+--------------------
+2020-03-31/화요일
+2000-11-11/토요일
+1988-01-01/금요일
+2020-04-03/금요일
+2016-05-19/목요일
+
+
+==>>예제 입사일의 연월일 시분호 요일
+select to_char(hire_date,'yyyy/MM/dd /hh:mi:ss /day') as "입사일" from employees;
+(출력문)
+입사일
+--------------------
+2006/02/05 /12:00:00 /일요일
+2007/02/07 /12:00:00 /수요일
+2002/08/17 /12:00:00 /토요일
+2002/08/16 /12:00:00 /금요일
+2005/09/28 /12:00:00 /수요일
+2005/09/30 /12:00:00 /금요일
+2006/03/07 /12:00:00 /화요일
+2007/12/07 /12:00:00 /금요일
+2002/12/07 /12:00:00 /토요일
+2003/05/18 /12:00:00 /일요일
+
+*숫자콤마찍기
+
+L >각 지역별 통화 ex)$ \
+0 >자릿수 부족한건 0으로 채움
+9 >자릿수 부족한건 내비둠
+, >1000단위구분
+. >소숫점 자리구분
+
+
+select to_char(123456789,'999,999,999') from dual;
+
+(출력문)
+to_char(123456789,'999,999,999')
+--------------------
+123,456,789
+
+select to_char(123456789,'L999,999,999') from dual;
+(출력문)
+to_char(123456789,'L999,999,999')
+--------------------
+\123,456,789
+
+select to_char(123456789,'$999,999,999') from dual;
+(출력문)
+to_char(123456789,'$999,999,999')
+--------------------
+$123,456,789
+
+
+------------------------------------------------------------------------------------------------------
+
+
+#문자 > 날짜 형변환 (숫자만 써야한다)
+
+select emp_name,hire_date from employees where hire_date=to_date(20050817,'yyyy-MM-dd');
+				혹은
+select emp_name,hire_date from employees where hire_date=to_date('20050817','yyyy-MM-dd');
+
+emp_name 	hire_date
+--------------------------
+Pat Fay		05/08/17
+
+------------------------------------------------------------------------------------------------------
+
+비교하기 :>
+select * from m0420_1 where to_date(m_date,'yy-MM-dd')=to_date(sysdate,'yy/MM/dd'); (o)
+select * from m0420_1 where m_date=sysdate; (x) 표엔 안보이지만 시간이 달라서 찾을수 없음
+select * from m0420_1 where m_date='20/04/20'; (x) 문자랑 날짜는 비교불가
+select m_date,to_char(m_date,'yy/MM/dd hh:mi:ss'),var_date from m0420_1 where m_date='20/04/20'; <<일부만 검색된다 - 시간이 맞지 않아서..고로 생일같이 시간이 중요치 않은 date의 경우 그냥 입력할때 sysdate대신 년월일을 입력해주는게 좋다.
+select m_date,to_char(var_date,'yy/MM/dd hh:mi:ss'),var_date from m0420_1 where m_date='20/04/20'; <<일부만 검색된다 - 원래부터 문자로 입력되어 일치하는게 잘 검색된다.
+
+
+----------------------------------------------------------------------------------------------
+응용편 >>null을 ceo로 표기되게
+select emp_name,nvl(to_char(manager_id),'ceo') from employees;
+
+
+----------------------------------------------------------------------------------------------
+*테이블 이름 변경
+rename m0420_1 to m0420_01;
+
+
+*테이블 추가
+alter table m0420_01
+add(id varchar2(20));
+
+*테이블 수정
+alter table m0420_01
+modify(id varchar2(10));
+
+
+

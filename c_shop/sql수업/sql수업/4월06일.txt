@@ -1,0 +1,57 @@
+response.sendRedirect
+>>
+
+String name= URLEncoder.encode(Request.getParameter("name"),"utf-8");
+
+파라미터값으로 넘겼을때 한글이면 일케 인코딩 후 보내야 한다.
+
+
+<<리퀘스트>>
+컨텍트패스
+리퀘스트유알아이
+리퀘스트 유알엘
+
+
+<<리스폰스>>
+겟캐릭터인코딩
+샌드리다이렉트 
+어디드쿠키
+
+
+
+<<액션태그>>
+어떤 동작을 하도록 지시를 하는 태그.
+foward, include, param, bean
+페이지넘김, 페이지포함, foward에서 데이터를 같이보낼때 사용
+
+1)foward --현페이지 대신 보여줄 페이지를 링크. html상에서도 파일이름은 안바뀌지만 링크건 페이지로 나온다
+(공개안할 페이지를 수정할때 사용 //파라미터 값이 보이지 않음)
+<jsp:foward page="a.jsp" />
+
+2)include
+
+3)param >>>foward와 같이 쓴다.
+
+
+<<쿠키>> 
+비슷한것 >>session(세션)
+
+-데이터를 저장(서버x) 유저컴퓨터(클라이언트)에 저장.
+-어떤정보(ex-로그인상태)를 지속적으로 유지.
+-용량 4kb,300개까지만들수 있음
+-공개피씨서 사용시 보안에 문제가 있음.
+
+사용방법>>
+Cookie 쿠키이름=new Cookie("getName","getValue");
+response.addCookie(쿠키이름); 로 사용
+
+
+>쿠키관련 메소드
+*setMaxAge():유효기간설정 (초단위..>>비중요 쿠키는 값을 작게해야 된다.) (양식: 60*60
+setpath():쿠키사용의 유효디렉토리
+*setValue()쿠키값설정
+setVersion()쿠키버전 설정
+
+*getMaxAge():유효기간정보를 얻음
+*getName(): 쿠키이름을 읽어옴
+*getValue():쿠키값을 읽어옴

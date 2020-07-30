@@ -1,0 +1,29 @@
+게시판형태 = 이벤트 리스트 페이지와 같음.
+(관리자 단에서 글쓰면 그 글이 쿠킷 사이트에서 보여야함.)
+
+검색창만들기
+>넘기는 매개변수 (opt-셀렉박스, search-입력폼)
+
+select * from mvc_board where btitle like '%테%' or bcontent like '%테%';
+
+오류해결>>>
+1. Ibatis의 경우
+
+Ibatis 는 동적쿼리를 생성할 때 #value# 를 사용한다.
+그러나 #value#  가  주석 안에 있다면, 주석이라 할 지라도 쿼리에 영향을 주어 에러를 낸다.
+주석 안에 #value#  같은 것이 남아있는지 확인하자.
+
+
+
+
+2. JDBC PreparedStatement 의 경우
+
+
+LIKE 문을 사용할 때 다음과 같이 하지 않았는지 살펴보자
+sb.append("select * from zipcode_20070704_7 where dong like '%?%' ");  ==> 오류
+위와 같이 하면  ?  에 setObject 를 할 수 없다.
+그러므로 쿼리를 다음과 같이 수정하자.
+sb.append("select * from zipcode_20070704_7 where dong like '%' || ? || '%' ");
+
+
+**칼럼에 별명을 설정해주면 불러올때 별명을 써야한다 안그럴시 부적합한 열 이름오류 ... sql = "select count(*) from sangdata";

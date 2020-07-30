@@ -1,0 +1,39 @@
+[게시판 형태 DB]
+
+id Number(4) primary key 	> 번호
+name varchar(20) 		> 작성자이름
+title varchar2(100)		> 제목
+content varchar2(2000)		> 내용
+date  date DEFAULT sysdate	> 작성일
+hit  number(4) DEFAULT 0	> 조회수
+group  	 number(4)		> 댓글
+step  	 NUMBER(4)		> 댓글순서 (작성일기준으로 보여지게하거나..)
+indent 	NUMBER(4)		> 댓글의 들여쓰기 (대댓글)
+	↓
+테이블
+create table mvc_board(
+bId number(4) primary key,
+bName varchar2(20),
+bTitle varchar2(100),
+bContent varchar2(2000),
+bdate date DEFAULT sysdate,
+bHit number(4) DEFAULT 0,
+bGroup number(4),
+bStep NUMBER(4),
+bIndent NUMBER(4));
+
+시퀀스
+create SEQUENCE mvc_board_seq
+INCREMENT by 1
+start with 1
+minvalue 1
+MAXVALUE 9999
+nocycle;
+
+테스트
+insert into mvc_board values(
+mvc_board_seq.nextval,'관리자','게시판테스트','게시판테스트입니다.',sysdate,0,mvc_board_seq.currval,0,0);
+
+
+라고 말하라고 한다 '0'
+MVC패턴으로 Dao, Dto 그리고 각각의 커멘드가 있는 인터페이스를 모아놓은 구조로 만들었습니다

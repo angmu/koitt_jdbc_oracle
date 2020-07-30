@@ -1,0 +1,53 @@
+setAttribute("키","값")
+getAttribute() >>리턴타입 Object (형변환 필요)
+getAttributeNames() >>리턴타입 Enumeration (hasNext() ,Next()로 값을 읽어온다)
+
+
+---------------------------------
+예외 처리페이지
+
+지시자로 상단에 표시
+<%@ page isErrorPage="true"%>
+
+
+---
+예전 try catch문
+
+printStackTrace()
+ArithmeticException 
+getMessage() >>
+--
+
+
+
+---
+예전꺼
+
+jsp태그
+지시자, 주석,선언식,표현식,스크립트릿,액션태그
+>액션태그
+
+포워드 >>페이지를 넘겨줌(페이지 이름이 안바뀜)
+인크루드>>지시자에도 있다 (페이지를 포함)
+파람>> 포워드랑 같이 사용
+빈>>자바객체(class타입)
+
+ArithmeticException 
+getMessage() >>
+--
+
+*데이터를 주고받을때 쓰는것
+1.폼 2.파라미터 3.파람 (값을 넘기는것)+4.useBean (빈)
+데이터 확인>5.쿠키,6.섹션
+
+
+
+
+--
+
+*객체>>자바빈 --class
+(카드에서 Card()클래스 --kind와 number는 데이터이다)
+private으로 만들고 getter와 setter를 생성해둔다.
+
+
+

@@ -1,0 +1,36 @@
+
+
+기존
+login-->login_ok     ┐
+join -->join_ok      ㅏ---> Dao--->DB
+select -->select_ok  ┘
+
+----------------------------
+<frontController>
+*.do (비교하여 커맨드선택)
+
+
+>발전1 jsp_0424_02 형태
+
+login 	┐
+join	ㅏ-- *.do--->Dao--->DB
+select	┘
+	      |
+	      |
+	
+	↙    ↓    ↘
+   응답1   응답2   응답3..
+
+
+
+>최종
+		  	인터페이스로 분기
+login 	┐		┌ login_command  ┐
+join	ㅏ-- *.do  -----ㅓ join_command   ㅏ------>Dao--->DB
+select	┘		└ select_command ┘
+	      |
+	      |
+	
+	↙    ↓    ↘
+   응답1   응답2   응답3..
+

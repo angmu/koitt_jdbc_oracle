@@ -1,0 +1,60 @@
+*중복아이디여부 활용
+>>select id from member where id='abc';
+
+*로그인 활용
+>>select id,pw,name from member where id='abc' and pw='123';
+>>>name 님 환영합니다 이케 출력가능:>
+
+>네이버의 경우 메일, 쪽지 읽지않은것을 체크해서 개수를 반환하였다.
+
+
+
+* 일부검색 :>
+
+Class.forName("oracle.jdbc.driver.OracleDriver");
+conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","ora_user","1234");
+stmt=conn.createStatement();
+
+//일부검색할 단어를 여기에 뽀롱!
+String in1="홍";
+String sql="select*from member where name like '%"+in1+"%'";
+rs=stmt.executeQuery(sql);
+
+*테이블 모두 검색
+select * from tab;
+
+*테이블 구조
+desc member;
+
+
+*더미데이터(실제로는 없는테이블이지만 결과값을 보여주기위해 만들어지는 더미데이터)
+select sysdate from dual;
+
+
+*날짜 date
+현재시간: sysdate;
+
+>insert into member2 values(
+'bcd','234','김유신',sysdate)		
+
+
+
+==>응용1
+select sysdate-1 어제,sysdate 오늘,sysdate+1 내일 from dual;
+출력형태
+어제 		오늘		내일
+----------------------------------------
+20/04/12	20/04/13	20/04/14
+
+==>응용2
+select sysdate-hire_date as 근무일수 from employees;
+
+
+
+*게시판 활용 (나중의 글이 젤 위에 있기 때문에 desc를 사용하는게 좋다)
+String sql="select*from member where id like '%"+in2+"%' order by id desc";	
+
+
+
+select *from employees where hire_date >= '2007/01/01';
+날짜비교검색가능

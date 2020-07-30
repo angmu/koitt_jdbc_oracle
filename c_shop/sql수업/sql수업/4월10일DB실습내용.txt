@@ -1,0 +1,61 @@
+4월10일 DB실습내용
+
+create table member3(
+s_number number(2) PRIMARY KEY,
+s_grade number(1),
+s_name VARCHAR2(20),
+payok VARCHAR2(10),
+s_subject varchar2(20),
+s_price number(10),
+payway VARCHAR2(15));
+
+COMMIT;
+drop table member3;
+
+insert into member3 values(
+1,1,'홍길동','예','수학','288000','현금');
+
+
+insert into member3 values(
+2,1,'이순신','아니오','영문법기초','182000','자동이체');
+
+
+insert into member3 values(
+3,2,'강감찬','예','일반반','450000','카드');
+
+
+insert into member3 values(
+4,2,'유관순','예','수학','288000','자동이체');
+
+
+insert into member3 values(
+5,3,'김구','아니오','특별반','580000','현금');
+
+select*from member3;
+
+
+
+-----------------------------------
+
+
+select*from member3;
+
+create table instrument(
+kind VARCHAR2(20),
+code VARCHAR2(20),
+p_name VARCHAR2(20),
+rental VARCHAR2(20),
+warranty number(1),
+phone VARCHAR2(20));
+
+insert into instrument values(
+'첼로','CA238','LAWENCE','홍길동',0,'010-1111-1111');
+
+insert into instrument values(
+'첼로','CA229','LAWENCE','유관순',0,'010-2222-2222');
+insert into instrument values(
+'바이올린','AB464','J_GAGLIANO','강감찬',1,'010-3333-3333');
+insert into instrument values(
+'비올라','BA193','FRANCOIS','이순신',1,'010-4444-4444');
+insert into instrument values(
+'비올라','BA238','LAWENCE','김유신',1,'010-5555-5555');
