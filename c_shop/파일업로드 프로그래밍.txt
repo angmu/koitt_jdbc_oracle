@@ -1,0 +1,17 @@
+[upload_ok.jsp]
+String path="D:/upload";//절대경로지정
+//저장경로지정
+String path=request.getRealPath("upload");//jsp소스에서 적용
+String path=request.getSession().getServletContext().getRealPath("upload");//servlet소스에서 적용
+
+[server.xml]
+
+<Host>
+<Context docBase="jsp_0422" path="/jsp_0422" reloadable="true" source="org.eclipse.jst.jee.server:jsp_0422"/>
+<Context docBase="D:/upload" path="/jsp_0422/upload" reloadable="true"/>
+</Host>
+
+위의 경우 
+<img src="d:/upload/1.jpg"/> <<이경우 이미지를 안열어줌
+이 아닌
+<img src="jsp_0422/upload/1.jpg"/> 로 열어줌

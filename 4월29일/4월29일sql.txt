@@ -1,0 +1,73 @@
+*그룹함수를 쓰면 GROUP by 형태로 받아야함, 만약 조건이있을경우 having으로 검색.
+*to_char로 변형하면 기존에 number엿다해도 조회한 항목은 char형태이므로 getString으로 받아야한다.
+select department_id,to_char(avg(salary),'99999.99') as avg_sal from employees GROUP by department_id;
+
+rs=pstmt.executeQuery();
+while (rs.next()){
+rs.getInt("department_id");
+rs.getString("avg_sal");
+}
+
+
+----------------------------
+*조인 (테이블 동시검색)
+
+>> equi조인 (같은조건을 찾아서 조회)
+select emp_name,jobs.job_id,jobs.job_title from employees,jobs where employees.job_id ='FI_MGR' and employees.job_id=jobs.job_id;
+
+----
+-조회할때 별칭사용가능(테이블 이름이 길때 사용하면 좋음 '3'!)
+select emp.emp_name,j.job_id,j.job_title from employees emp,jobs j where emp.job_id=j.job_id;
+
+rs=pstmt.executeQuery();
+while (rs.next()){
+rs.getInt("j.job_id");
+rs.getString("j.job_title");
+}
+
+>> non equi조인 (~사이조건을 찾아서 조회)
+
+---------------
+실습>>
+//employees > employee_id,emp_name,department_id
+//departments > department_id,department_name
+department_id가 같은거 출력!
+
+select emp.employee_id,emp.emp_name,emp.department_id,department_name from employees emp,departments de where emp.department_id=de.department_id;
+>>이경우 department_id를 어느테이블에서 불러올지 체크를 해줘야함
+
+--------------
+*rownum > 조회된 순서대로 순번 붙이기  
+select rownum,emp.employee_id,emp.emp_name,emp.department_id,department_name from employees emp,departments de where emp.department_id=de.department_id;
+
+
+*이중쿼리문
+select rownum,employee_id,emp_name from (select*from employees where salary>=7000);
+(from 뒤에 꼭 테이블이 아니어도 된다..)
+
+------------
+실습1>> Ne로시작하는 사람의 사원번호,사원이름,부서번호,부서이름을 출력
+select rownum,emp.employee_id,emp.emp_name,emp.department_id,department_name from employees emp,departments de where emp.department_id=de.department_id and emp.emp_name like 'Ne%';
+
+실습2>> 부서번호가 20번인 사원번호 사원이름 부서번호 부서이름 입사일
+select emp.employee_id,emp.emp_name,emp.department_id,department_name,emp.hire_date from employees emp,departments de where emp.department_id=de.department_id and emp.department_id=20;
+
+실습3>>직급이 sa_man인 사원의 이름,부서명 출력
+select emp_name,department_name,emp.job_id from employees emp,departments de where job_id='SA_MAN' and emp.department_id=de.department_id;
+
+★응용>>답변달린것만 찾기
+select * from mvc_board where btitle like '%답변%' or bcontent like '%답글%';
+
+>테스트 찾기
+select * from mvc_board where btitle like '%테스트%' or bcontent like '%테스트%';
+--------
+
+select emp_name,department_name,emp.job_id from employees emp,departments de where emp.department_id between 50 and 1200 and emp.department_id=de.department_id;
+
+**전체검색을 할때 rownum을 쓰고싶으면 별칭을 써야한다.
+select rownum,m.* from mvc_board m where btitle like '%테스트%' or bcontent like '%테스트%';
+
+---------
+*셀프조인 (테이블을 2번 선택하되 별칭으로 구분) manager_name<< rs로받을때는 이걸 받아야함.
+select e1.employee_id,e1.emp_name,e1.manager_id,e2.emp_name manager_name from employees e1,employees e2 where e2.employee_id=e1.manager_id and e1.employee_id=198;
+

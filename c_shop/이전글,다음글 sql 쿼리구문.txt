@@ -1,0 +1,44 @@
+[ rownum 사용시 이전글 다음글 ]
+
+<이전글>
+select * from
+(select rownum rnum,bid,bname,btitle,bcontent,bdate,bhit,bgroup,bstep,bindent from
+(select * from mvc_board order by bgroup desc,bid asc))
+where rnum=3-1;
+
+<현재글>
+select * from
+(select rownum rnum,bid,bname,btitle,bcontent,bdate,bhit,bgroup,bstep,bindent from
+(select * from mvc_board order by bgroup desc,bid asc))
+where rnum=3;
+
+< 다음글>
+select * from
+(select rownum rnum,bid,bname,btitle,bcontent,bdate,bhit,bgroup,bstep,bindent from
+(select * from mvc_board order by bgroup desc,bid asc))
+where rnum=3+1;
+
+----------------------------------------------------------------------------------
+[ bid - seq 번호로 정렬할 경우 ]
+- 중간에 삭제가 된 경우가 발생하여, 순차적인 번호로 아님.
+
+<이전글>
+select * from
+(select rownum rnum,bid,bname,btitle,bcontent,bdate,bhit,bgroup,bstep,bindent from
+(select * from mvc_board order by bgroup desc,bid asc))
+where bid=(select max(bid) from mvc_board where bid<9);
+- 9번보다 작은 것 중에 가장 큰수를 찾음.
+
+<현재글>
+select * from
+(select rownum rnum,bid,bname,btitle,bcontent,bdate,bhit,bgroup,bstep,bindent from
+(select * from mvc_board order by bgroup desc,bid asc))
+where bid=9);
+
+<다음글>
+select * from
+(select rownum rnum,bid,bname,btitle,bcontent,bdate,bhit,bgroup,bstep,bindent from
+(select * from mvc_board order by bgroup desc,bid asc))
+where bid=(select min(bid) from mvc_board where bid>9);
+- 9번 보다 큰 중에 가장 작은수를 찾음.
+

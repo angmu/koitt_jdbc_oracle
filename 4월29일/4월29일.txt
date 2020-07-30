@@ -1,0 +1,8 @@
+request.getAttribute("bid")>>object
+
+Integer.parseInt((String)request.getAttribute("bid")) >>에러가뜸
+
+String str=(String)request.getAttribute("bid");
+>>int i=Integer.valueOf(str).intValue();
+
+--------------위처럼 해야 에러x

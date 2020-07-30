@@ -1,0 +1,163 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>집밥을 특별하게, 쿡킷</title>
+		<link type="text/css" rel="stylesheet" href="css/style.css">
+		<link type="text/css" rel="stylesheet" href="css/event_list.css">
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript" src="js/common.js" defer="defer"></script>
+	</head>
+	<body>
+		<header>
+			<div id="nav_up">
+				<ul>
+					<li><a href="signup.html">회원가입</a></li>
+					<li><a href="login.html">로그인</a></li>
+					<li><a href="list.html">고객행복센터</a></li>
+					<li><a href="#">배송지역검색</a></li>
+					<li><a href="#">기프트카드 등록</a></li>
+					<li><a href="admin_login.html">관리자페이지</a></li>
+				</ul>
+			</div>
+			<nav>
+				<h1><a href="main.html"></a></h1>
+				<ul>
+					<li><a href="#">COOKIT소개</a></li>
+					<li><a href="#">COOKIT메뉴</a><span>.</span></li>
+					<li><a href="#">리뷰</a></li>
+					<li><a href="event_list.html">이벤트</a></li>
+					<li><a href="#">MY쿡킷</a></li>
+				</ul>
+				<ul>
+					<li><a href="#"><span>장바구니</span></a></li>
+					<li><a href="#"><span>메뉴찾기</span></a></li>
+				</ul>
+			</nav>
+		</header>
+		<section>
+			<div>이벤트</div>
+			<ul>
+				<li class="btn1">진행중</li>
+				<li class="btn2">당첨자 발표</li>
+			</ul>
+			<div class="btn1_div">
+				<ul>
+					<li><a href="event_view.html">
+					<img src="images/event01.jpg">
+					<span class="frag">EVENT</span><span class="date">2020.03.13~2020.03.31</span><span class="title">[쿡킷]3월 돌밥돌밥 해결사 쿡킷!</span>
+					</a></li>
+					<li><a href="#">
+					<img src="images/event02.jpg">
+					<span class="frag">EVENT</span><span class="date">2020.03.03~2020.03.26</span><span class="title">[3월]힘내라!대한민국! 프로모션</span>
+					</a></li>
+					<li><a href="#">
+					<img src="images/event03.jpg">
+					<span class="frag">EVENT</span><span class="date">2020.03.04~2020.12.31</span><span class="title">스탬프 쾅!쾅! 혜택이 팡!팡! </span>
+					</a></li>
+					<li><a href="#">
+					<img src="images/event04.jpg">
+					<span class="frag">EVENT</span><span class="date">2019.06.24~2020.06.30</span><span class="title">첫구매시 무료배송 &amp; 최대 만원 할인쿠폰 혜택</span>
+					</a></li>
+					<li><a href="#">
+					<img src="images/event05.jpg">
+					<span class="frag">EVENT</span><span class="date">2020.03.01~2020.03.31</span><span class="title">쿡킷 💳 이달의 카드사 청구할인</span>
+					</a></li>
+				</ul>
+				<div class="page_btn">
+					<span class="write_pg"><a href="input_page.html">글쓰기</a></span>
+				</div>
+				<div class="page_num">
+					<strong>1</strong>
+				</div>
+			</div>
+			<div class="btn2_div">
+				<div><span class="ok_sign"></span><span class="s_text">내가 참여한 이벤트</span></div>
+				<div><span class="ev_check_no"></span><p>당첨자 발표 내역이 없습니다.</p></div>
+			</div>
+		</section>
+		<footer>
+			<div id="footer">
+			<div>
+				<h1>
+					<a href="#"></a>
+				</h1>
+				<p>© COOKIT ALL RIGHTS RESERVED</p>
+			</div>
+			<div>
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li class="lime"><a href="#">개인정보처리 방침</a></li>
+					<li><a href="#">법적고지</a></li>
+					<li><a href="#">사업자정보 확인</a></li>
+				</ul>
+				<p>씨제이제일제당(주)</p>
+				<p>대표이사 : 손경식,강신호,신현재</p>
+				<p class="right_n">사업자등록번호 : 104-86-09535</p>
+				<p>주소 : 서울 중구 동호로 330 CJ제일제당 센터 (우) 04560</p>
+				<p>통신판매업신고 중구 제 07767호</p>
+				<p class="right_n">개인정보보호책임자 : 조영민</p>
+				<p>이메일 : cjon@cj.net</p>
+				<p class="right_n">호스팅제공자 : CJ올리브네트웍스㈜</p>
+				<p class="right_n">
+					고객님은 안전거래를 위해 현금등으로 결제시 LG U+ 전자 결제의 매매보호(에스크로) 서비스를 이용하실 수 있습니다.<a
+						href="#">가입 사실 확인</a>
+				</p>
+			</div>
+			<div>
+				<p id="f_menubtn">
+					CJ그룹계열사 바로가기 <span class="entypo-down-open"></span>
+				</p>
+				<div id="hide_menu">
+					<ul>
+						<li>CJ그룹
+							<ul>
+								<li><a href="#">CJ주식회사</a></li>
+							</ul>
+						</li>
+						<li>식품&amp;식품서비스
+							<ul>
+								<li><a href="#">CJ제일제당(식품)</a></li>
+								<li><a href="#">CJ푸드빌</a></li>
+								<li><a href="#">CJ프레시웨이</a></li>
+								<li><a href="#">CJ엠디원</a></li>
+							</ul>
+						</li>
+						<li>생명공학
+							<ul>
+								<li><a href="#">CJ제일제당(바이오)</a></li>
+							</ul>
+						</li>
+						<li>신유통
+							<ul>
+								<li><a href="#">CJ ENM(오쇼핑)</a></li>
+								<li><a href="#">CJ대한통운</a></li>
+								<li><a href="#">CJ텔레닉스</a></li>
+								<li><a href="#">CJ올리브영</a></li>
+							</ul>
+						</li>
+						<li>엔터테인먼트&amp;미디어
+							<ul>
+								<li><a href="#">CJ ENM(E&amp;M)</a></li>
+								<li><a href="#">CJ CGV</a></li>
+								<li><a href="#">CJ파워캐스트</a></li>
+							</ul>
+						</li>
+						<li>인프라
+							<ul>
+								<li><a href="#">CJ대한통운(건설)</a></li>
+								<li><a href="#">CJ올리브네트웍스</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<p>고객행복센터</p>
+				<p>1668-1920</p>
+				<div id="f_btn">1:1문의</div>
+			</div>
+		</div>
+		</footer>
+	</body>
+</html>
