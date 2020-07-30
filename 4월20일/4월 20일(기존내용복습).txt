@@ -1,0 +1,79 @@
+
+쿼리문
+>>select salatry*12*1200 as y_sal from member
+
+받을때>>
+rs.getString("y_sal");
+
+이런식으로 as를 써서 불러오기 가능. as "근무년수" <<큰따옴표 
+
+--------------------------------------------------------------
+
+*검색방법
+
+#distinct (중복제거)
+select distinct commission_pct from employees where commission_pct is not null;
+
+
+#between
+>select salary from employees where salary>=3000 and salary<=10000;
+==>select salary from employees where salary between 3000 and 10000;
+
+
+#in('','',2000)
+select salary from employees where salary in(5000,7000,10000) order by salary asc;
+
+
+#like
+2째자리가 r
+select emp_name from employees where emp_name like '_r%' order by emp_name asc;
+
+
+#is null (null은 !=null이런식으로 조회x// 부정은 is not null)
+select commission_pct from employees where commission_pct is null;
+
+
+#오름차순 asc
+select *from employees order by employee_id asc;
+
+#내림차순 desc
+(게시판같은것. /  1/1000초 단위까지 줄세울수 있음)
+select hire_date from employees order by hire_date desc;
+select department_id,hire_date from employees order by department_id asc,hire_date desc;
+select emp_name,department_id,hire_date from employees where emp_name like '%t%' order by department_id asc,hire_date desc;
+
+#반올림 round
+소숫점 2째자리
+select salary,salary*12+round(salary*nvl(commission_pct,0)/12,2) as salary_p from employees order by salary_p;
+
+
+#시퀀스
+create sequence board   >>board 라는 시퀀스명
+increment by 1		>>증가량 1
+MAXVALUE 1000		>>최대
+MINVALUE 2		>>최소
+START WITH 4		>>시작숫자
+cycle;			>>MAXVALUE 이후 다시 4부터 시작한다는 뜻
+
+#시퀀스 사용
+select board.nextval from dual;
+
+
+#시퀀스 현재숫자확인
+select board.currval from dual;
+
+#시퀀스 수정
+alter sequence board
+increment by 3;
+
+#시퀀스 삭제
+drop sequence board;
+
+
+
+
+
+
+
+
+

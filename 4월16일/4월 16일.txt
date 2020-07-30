@@ -1,0 +1,60 @@
+*테이블 컬럼 추가 삭제 수정 (ALTER)
+
+
+>1. 컬럼추가 add column
+alter table lms_member 
+add (pw VARCHAR2(20));
+
+alter table lms_member
+add (phone2 VARCHAR2(4),phone3 VARCHAR2(4));
+
+>2. 컬럼수정 modify column 
+>>데이터를 늘리거나 줄일때는(기존정보유실가능) 신중하게 처리해야함
+alter table lms_member
+modify (email VARCHAR2(40));
+
+>3. 컬럼삭제 drop column
+alter table lms_member
+drop column phone2;
+
+
+>>stmt대신!
+
+
+PreparedStatement pstmt=null;
+
+신규등록할때
+>sql="insert into lms_member values(?,?,?,?,?,?,?,?,?,?)";
+pstmt=con.prepareStatement(sql);
+	pstmt.setString(1, id);
+	pstmt.setString(2, pw);
+	pstmt.setString(3, name);
+	pstmt.setString(4, email);
+	pstmt.setString(5, address);
+	pstmt.setString(6, phone);
+	pstmt.setString(7, birth);
+	pstmt.setString(8, gender);
+	pstmt.setString(9, news);
+	pstmt.setString(10, sms);
+	check=pstmt.executeUpdate();
+
+
+수정할때 (아이디는 getParameter 값으로 받는다.)
+>sql="update lms_member set pw=?,name=?,email=?,address=?,phone=?,birth=?,gender=?,news=?,sms=? where id=?"; 
+System.out.println(sql);
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","ora_user","1234");
+	pstmt=con.prepareStatement(sql);
+	pstmt.setString(1, pw);
+	pstmt.setString(2, name);
+	pstmt.setString(3, email);
+	pstmt.setString(4, address);
+	pstmt.setString(5, phone);
+	pstmt.setString(6, birth);
+	pstmt.setString(7, gender);
+	pstmt.setString(8, news);
+	pstmt.setString(9, sms);
+	pstmt.setString(10, id);
+	check=pstmt.executeUpdate();
+
+
