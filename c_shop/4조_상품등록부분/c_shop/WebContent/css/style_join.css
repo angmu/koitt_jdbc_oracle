@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/*전체를 감싸는 div*/
+#stu_input_wrap {
+	width: 90%;
+	height:1400px;
+	margin: 100px auto;
+	margin-bottom:40px;
+}
+/*제목부분*/
+#stu_input_wrap>p {
+	display: block;
+	width: 100%;
+	height: 25px;
+	border-bottom: 1px solid #efefef;
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 30px;
+}
+
+#stu_input_wrap>p>a {
+	display: block;
+	float: right;
+	background-color: #7b7b7b;
+	width: 22px;
+	height: 22px;
+	margin-left: 2px;
+	padding: 4px 0 0 4.3px;
+	box-sizing: border-box;
+}
+
+#stu_input_wrap>span {
+	display: block;
+	width: 89px;
+	height: 20px;
+	font-size: 15px;
+	margin-top: 40px;
+	font-weight: 600;
+}
+/*테이블 공통부분*/
+#stu_input_wrap>table {
+	width: 100%;
+	height: 569px;
+	border-top: 2px solid #606060;
+	border-bottom: 2px solid #606060;
+	border-collapse: collapse;
+	margin-top: 6px;
+}
+
+#stu_input_wrap tr {
+	border-bottom: 1px solid #efefef;
+}
+
+#stu_input_wrap th {
+	width: 180px;
+	height: 52px;
+	background-color: #f8f8f8;
+	font-size: 12px;
+	border-bottom: 1px solid #cecece;
+}
+
+#stu_input_wrap td {
+	
+	box-sizing: border-box;
+	padding-left: 20px;
+	font-size: 13px;
+}
+/*전화번호 td 크기설정*/
+.mini {
+	width: 445px;
+}
+
+/*중복확인 버튼설정*/
+a.dople {
+	display: inline-block;
+	width: 78px;
+	height: 24px;
+	background-color: #9f9f9f;
+	font-size: 13px;
+	box-sizing: border-box;
+	text-decoration: none;
+	padding: 4px 0 0 5.4px;
+	color: #fff;
+	border: 0.3px solid #606060;
+}
+
+#stu_input_wrap input[type="text"] {
+	width: 204px;
+	height: 24px;
+	margin-bottom:3px;
+}
+/*생년월일 입력input*/
+#stu_input_wrap input[type="date"] {
+	width: 204px;
+	height: 24px;
+}
+/*성별입력 input*/
+#stu_input_wrap input[type="radio"] {
+	margin: 0 5px 0 5px;
+}
+
+#stu_input_wrap select {
+	height: 28px;
+}
+/*전화번호input크기설정*/
+#stu_input_wrap input[maxlength="4"] {
+	width: 34px;
+}
+/*테이블상 버튼설정*/
+#stu_input_wrap button {
+	width: 84px;
+	height: 32px;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #ed5f00;
+	text-align: center;
+	color: #fff;
+}
+/*이미지 위치조정*/
+img[alt="알림"] {
+	margin: 0 6px 0 6px;
+	position: relative;
+	top: 4.6px;
+}
+
+/*이미지 위치조정*/
+img[alt="체크"] {
+	margin-right: 4px;
+	margin-bottom: 1px;
+}
+/*아래 버튼부분*/
+#submit {
+	width:200px;
+	float: right;
+	margin-top:60px;
+	margin-bottom:70px;
+	box-sizing: border-box;
+}
+
+#submit button {
+	width: 84px;
+	height: 32px;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #ed5f00;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+}

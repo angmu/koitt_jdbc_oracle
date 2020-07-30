@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../../css/myg/style_notice_input.css">
+<link rel="stylesheet" type="text/css" href="../../css/myg/admin_account.css">
+<script type="text/javascript" src="../../js/myg/custom_notice_input.js"></script>
+<script type="text/javascript" src="../../js/myg/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../js/myg/prefixfree.dynamic-dom.min.js"></script>
+
+</head>
+	<body>
+		<header>
+			<div id="header_left">
+				LMS 
+				<span>
+				ENTERPRISE
+				</span> 
+				Type
+			</div>
+			<div id="header_right">
+				<span class="header_info">관리자 (GMT+9:00) Seoul</span>
+				<img src="http://lmsenterprise2019.itmap.co.kr/_admin/image/logout.png" alt="">
+				<table id="lang_list">
+					<tr>
+						<td class="table_head">
+							<a href="#"> 
+								<img src="http://lmsenterprise2019.itmap.co.kr/_admin/image/KOR.png" alt="">
+								 한국어
+							</a>
+						</td>
+						<td class="table_end">
+							<a href="#" class="pointer">
+								<span class="pointer_span">
+								▼
+								</span>
+							</a>
+						</td>
+					</tr>
+				</table>
+	
+				<table id="manual">
+					<tr>
+						<td class="table_head">
+							<a href="#">
+							LMS 매뉴얼
+							</a>
+						</td>
+						<td class="table_end">
+							<a href="#" class="pointer"> 
+								<span class="pointer_span">
+								▼
+								</span>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</header>
+	
+		<nav>
+			<ul>
+				<li class="nav_list">
+					<span class="nav1">&emsp;</span>
+					<a href="#">회원관리</a>
+				</li>
+				<li class="nav_list">
+					<span class="nav2">&emsp;</span>
+					<a href="#">상품관리</a>
+				</li>
+				<li class="nav_list">
+					<span class="nav3">&emsp;</span>
+					<a href="#">공지사항</a>
+				</li>
+				<li class="nav_list">
+					<span class="nav4">&emsp;</span>
+					<a href="#">이벤트</a>
+				</li>
+			</ul>
+		</nav>
+		<section>
+			<p>
+				관리자 공지사항 
+				<a href="#">
+					<img alt="목록" src="../../img/myg/list.png">
+				</a>
+				<a href="#">
+					<img alt="즐찾" src="../../img/myg/favorite.png">
+				</a>
+			</p>
+			<form action="" name="notice_input_form" id="notice_input_form" method="get">
+				<div id="notice_input_wrap">
+					<table id="notice_input_table">
+						<tr>
+							<th>
+								<p class="span_wrap">
+								<span class="table_title"></span>
+								유형
+								</p>
+							</th>
+							<td>
+								<select id="notice_con_type" name="notice_con_type">
+									<option value="normal">일반글 작성</option>
+									<option value="notice">공지글 작성</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<p class="span_wrap">
+									<span class="table_title"></span>작성자
+								</p>
+							</th>
+							<td>관리자</td>
+						</tr>
+						<tr>
+							<th>
+								<p class="span_wrap">
+									<span class="table_title"></span>
+									제목
+								</p>
+							</th>
+							<td>
+								<input type="text" name="notice_content_title" id="notice_content_title">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<textarea name="notice_content_input" id="notice_content_input">
+					  			</textarea>
+				  			</td>
+						</tr>
+						<tr>
+							<th>
+								<p class="span_wrap">
+									<span class="table_title"></span>
+									첨부파일
+								</p>
+							</th>
+							<td>
+								<input type="file" name="notice_file" id="notice_file">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<p class="autono_wrap">
+									<span class="table_title"></span>
+									자동등록 <br>&nbsp;방지코드
+								</p>
+							</th>
+							<td>
+								<img alt="" src="../../img/myg/d5gw13.jpg" id="autono_img"> 
+								<input type="text" name="autono_text" id="autono_text"> 
+								<span id="input_tail">
+								* 좌측의 코드를 입력해주세요.
+								</span>
+							</td>
+						</tr>
+	
+					</table>
+	
+					<div id="view_button">
+						<button>리스트</button>
+						<button>삭제</button>
+						<button>수정</button>
+					</div>
+				</div>
+			</form>
+	
+		</section>
+	</body>
+</html>

@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+*{ margin:0; padding:0; font-family: 'Noto Sans KR', sans-serif;}
+
+ul,ol{ list-style-type: none; }
+
+a{ text-decoration: none; color:#101010; }
+
+a:hover{ text-decoration: none; color:#101010; }
+
+a:visited{ text-decoration: none; color:#101010; }
+
+#nav_up{ width:100%; height: 35px; background: #202020; 
+	text-align: left;}
+
+#nav_up>ul{ float: right;
+	width: 230px; height: 25px; }
+	
+#nav_up>ul>li{ float: left; margin-left:15px; line-height: 32px; 
+	 }
+	
+#nav_up>ul>li>a{ font-size: 13px; color: white; }
+	
+nav{ width:100%; height: 81px; border-bottom: 1px solid #efefef; 
+	position: relative;}
+
+nav>a{ width: 100px; height: 30px; 
+	background: url('../img/ico_set.png')-320px -385px no-repeat;
+	background-size: 800px 800px; position: absolute; 
+	left:40px; top:25px; }
+	
+nav>ul:nth-child(2){ width: 780px; height: 60px; 
+	margin:0 auto; position: relative; top:23px;}
+
+nav>ul:nth-child(2) li{ float:left; margin-right: 60px; color: #101010; font-weight: 700; 
+	font-size: 22px; line-height: 32px; height: 56px; }
+	
+nav>ul:nth-child(3){ width:130px; height: 52px;
+	float: right; position: relative; top:-35px;}
+
+nav>ul:nth-child(3) li{ float:left; margin-left: 20px; color: #101010; font-weight: 700; 
+	font-size: 12px; }
+	
+nav>ul:nth-child(3)>li:nth-child(1)>a{ width:32px; height: 32px; display: inline-block;
+	background: url('../img/ico_set.png') -584px -320px no-repeat; 
+	background-size: 800px 800px; letter-spacing: -2px;}
+	
+nav>ul:nth-child(3)>li>a:link{ color:black;}
+
+nav>ul:nth-child(3)>li:nth-child(1)>a>span{ display: block; width: 50px; height: 20px; 
+	 position: relative; top:30px; left:-5px; }
+	 
+nav>ul:nth-child(3)>li:nth-child(2)>a{ width:32px; height: 32px; display: inline-block;
+	background: url('../img/ico_set.png') -628px -320px; no-repeat; 
+	background-size: 800px 800px; letter-spacing: -2px;}
+
+nav>ul:nth-child(3)>li:nth-child(2)>a>span{ display: block; width: 50px; height: 20px; 
+	 position: relative; top:30px; left:-5px; }
+	 
+footer{ width: 100%; height: 200px; background: #202020; 
+	padding: 0 145px; box-sizing: border-box; }
+	
+footer>div{ width:1300px; height: 210px; margin: 0 auto; box-sizing: border-box;}
+
+footer div div:nth-child(1) { width:300px; height: 149px; padding: 36px 0 0 0; 
+	float: left; margin-right: 70px;}
+
+footer div div:nth-child(1) a{ width:160px; height: 48px; display:inline-block; position:relative;
+	background: url('../img/logo2.png') no-repeat ; background-size:160px 48px;}
+	
+footer div div:nth-child(1) span{ width:300px; height: 45px; display: inline-block; 
+	color: #808080; font-size: 12px; padding: 45px 0 0 1px; margin-top:30px;}
+
+footer div div:nth-child(2) { float:left; width:650px; height: 177px; padding: 36px 0 0 0; box-sizing: border-box;}
+
+footer div div:nth-child(2) ul{ width:625px; height: 23px; }
+
+footer div div:nth-child(2) ul li{ width:95px;  float: left;  
+	border-right: 0.5px solid #808080; }
+	
+footer div div:nth-child(2) ul li a{ color:#fff; font-size: 13px;  font-weight: bold; text-align: center; position: relative; left:20px;}
+
+footer div div:nth-child(2) ul .foot_li{ width: 143px; }
+
+footer div div:nth-child(2) ul .foot_li a{ color:#BDD61A !important;}
+
+footer div div:nth-child(2) ul .foot_end{ width: 143px; border-right:0;}
+
+footer div div:nth-child(2) div:nth-child(2){ width: 740px; height:125px; color:#808080;}
+
+
+footer div div:nth-child(2) div:nth-child(2) p{ margin:6px 0 0; padding:0 8px 0 0; font-size: 12px; 
+	color:#808080; font-weight: 600;}
+	
+footer div div:nth-child(2) div:nth-child(2) p a{ text-decoration: underline; color:#fff;}
+
+footer div div:nth-child(3){ width: 250px; height: 170px; float:left; 
+	margin-left:10px; margin-top:30px; font-weight: bold;}
+
+footer div div:nth-child(3) span:nth-child(1){ width:160px; height: 19px; display:block; float:right; 
+	}
+	
+footer div div:nth-child(3) span:nth-child(1) a{ color:#fff; font-size: 13px;}
+	
+footer div div:nth-child(3) span:nth-child(2){ width:200px; height: 24px; display:block; float:right;
+	color:#fff; font-size: 17px; margin-top:20px;}
+
+footer div div:nth-child(3)>#qna{ width:88px; height: 32px; display:block; margin-top:20px; float:right;
+	color:#fff; font-size: 13px; border:0.5px solid #fff; text-align: center; line-height: 30px;}
